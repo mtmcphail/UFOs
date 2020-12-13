@@ -42,9 +42,7 @@ Code enhancements necessary to achieve our objectives include:
 *  An ```updateFilters``` function utilizes ```d3.select(this)``` to capture all the filters that were changed and proceeds to create a variable to capture the "value" and the "id" of the input which is used to loop through the dataTable.
 
 *  A "forEach" loop is used to loop through the search criteria captured in the ```updateFilters``` function:
-```Object.entries(filters).forEach(([key, value]) => {
-  filteredData = filteredData.filter(row => row[key] === value)
-});``` 
+```Object.entries(filters).forEach(([key, value]) => {filteredData = filteredData.filter(row => row[key] === value)});```
 
 *  Additional CSS elements were added to hopefully make the page a little more eye-catching
 	*  from [https://freefrontend.com/css-glow-text-effects/](): alien-green glowing text; Matt Smith on August 21, 2017
