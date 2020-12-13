@@ -42,13 +42,13 @@ Code enhancements necessary to achieve our objectives include:
 *  An ```updateFilters``` function utilizes ```d3.select(this)``` to capture all the filters that were changed and proceeds to create a variable to capture the "value" and the "id" of the input which is used to loop through the dataTable.
 
 *  A "forEach" loop is used to loop through the search criteria captured in the ```updateFilters``` function:
-	```Object.entries(filters).forEach(([key, value]) => {
-      filteredData = filteredData.filter(row => row[key] === value)
-    });``` 
+```Object.entries(filters).forEach(([key, value]) => {
+  filteredData = filteredData.filter(row => row[key] === value)
+});``` 
 
 *  Additional CSS elements were added to hopefully make the page a little more eye-catching
-	*  from ```https://freefrontend.com/css-glow-text-effects/```: alien-green glowing text; Matt Smith on August 21, 2017
-	*  from ```https://gifs.alphacoders.com/gifs/view/11666```: a sci-fi UFO gif file; author unknown
+	*  from [https://freefrontend.com/css-glow-text-effects/](): alien-green glowing text; Matt Smith on August 21, 2017
+	*  from [https://gifs.alphacoders.com/gifs/view/11666](): a sci-fi UFO gif file; author unknown
 
 ![ufos](./static/images/11666.gif)
 
@@ -61,28 +61,28 @@ The page is rather straightforward and the search function is very simple:
 
 1. Enter (type) search criteria into any (or as many) of the 5 search options 
 2. As soon as the "enter" button is hit or the cursor is clicked away from the input box, the resulting data table is displayed to the right.
-Example: All sighting in the United States (us) on January 4, 2010
+**Example:** All sighting in the United States (us) on January 4, 2010
 ![function](./static/images/search1.png)
 
-3. the users can drill down further by adding additional criteria to a preliminary search. Example: add the state of Virginia (va):
+3. the users can drill down further by adding additional criteria to a preliminary search. **Example:** add the state of Virginia (va):
 ![function](./static/images/search2.png)
  
-4. or simply remove criteria no longer needed and add new criteria as needed. Example: remove 3 criteria (date: 1/4/2010, country: us, and state: va) and add 1 new criteria (state: fl)
+4. or simply remove criteria no longer needed and add new criteria as needed. **Example:** remove 3 criteria (date: 1/4/2010, country: us, and state: va) and add 1 new criteria (state: fl)
 ![function](./static/images/search3.png)
 
 Perusing through the data using these search criteria is easy and dynamic, but there are some drawbacks and further fine-tuning is needed.
 
 
-##Drawbacks and Steps Forward
+## Drawbacks and Steps Forward
 While the website is doing exactly what it set out to do there are **some drawbacks**, and therefore areas for improvement for our next version.
 
-One **small drawback** I noticed - and incorporated even though the original objective of the code did not include it - is a **Reset Filters** button.    
+* One **small drawback** noticed - and addressed while refactoring the code - is a **Reset Filters** button.    
 ![drawbacks](./static/images/reset_btn.png)  
 While the **filters and table data do not need to be reset to start another search**, the filters do need to be removed or replaced as search parameters change.  When a user searches on 4 criteria but then wants to go back to using only 1, for example, the user needs to clear the other 3 filters.  
 
-You can also use the UFO Sightings tab on the navigation bar, but the user needs to scroll up to the top. *Having a button saves clicks and time.*
+	*You can also use the UFO Sightings tab on the navigation bar, but the user needs to scroll up to the top. Having a button saves clicks and time.*
 
-**One of the biggest drawbacks** of the code, as it is originally written, **involves the format of the input data**.  The data table text is all lowercase, even the state and country abbreviations.  Without calling an addditional function like ```.toLowerCase()```, the input captured by the filter will not result in a value match unless it is in all lowercase: 
+* One of **the biggest drawbacks** of the code, as it is originally written, **involves the format of the input data**.  The data table text is all lowercase, even the state and country abbreviations.  Without calling an addditional function like ```.toLowerCase()```, the input captured by the filter will not result in a value match unless it is in all lowercase: 
 
 For example, if the user enters in "CA" instead of "ca" for the state filter, no results render:
 ![drawbacks](./static/images/CAoutput.png)
@@ -96,11 +96,11 @@ This can be, and was addressed, by updating the code (in line 37) to reflect:
 Now if you enter "CA" in the state filter, this is what you see:
 ![drawbacks](./static/images/CAoutput_refactored.png)
 
-Still on the subject of search criteria, without a **drop-down menu** to choose from, the **Shape** filter is not very user-friendly, particularly because it is not obvious what shapes the table includes (e.g. light is a shape?).  To make it more user friendly, the input for the **shape filter should allow for drop-down menu**.
+* Still on the subject of search criteria, without a **drop-down menu** to choose from, the **Shape** filter is not very user-friendly, particularly because it is not obvious what shapes the table includes (e.g. light is a shape?).  To make it more user friendly, the input for the **shape filter should allow for drop-down menu**.
 
-Similarly, **adding an alert** if no data is found would be helpful! 
+* Similarly, **adding an alert** if no data is found would be helpful! 
 
-However, many of these drawbacks can be addressed if we **embed filters to the table functionality** rather than using as separate text-input search criteria.
+However, many of these drawbacks can be addressed if we **embed filters to the table functionality** rather than presenting as separate text-input search criteria.
 
 Other enhancements could include:
 
